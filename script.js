@@ -47,11 +47,12 @@ var appointmentsBlock = {};
 
 var storageLocal = JSON.parse(localStorage.getItem("appointmentsBlock"));
 if (storageLocal === null) {
-  
     console.log("It's Null!")
-} else { 
-     appointmentsBlock = JSON.parse(localStorage.getItem("appointmentsBlock"));
-     console.log("It's NOT Null!, run getItem")
+} else {
+    appointmentsBlock = JSON.parse(localStorage.getItem("appointmentsBlock"));
+    promptFn();
+
+    console.log("It's NOT Null!, run getItem")
 };
 
 // console.log(storageLocal);
@@ -80,4 +81,16 @@ $("button").on("click", function () {
 
 
 });
+// Extra feature added to reset the whole calendar if needed only if is not a first time use, hence empty
+function resetFn() {
+    var appointmentErase = null;
+    localStorage.setItem("appointmentsBlock", JSON.stringify(appointmentErase));
+};
 
+function promptFn() {
+    var confirmP = confirm("Reset the calendar?");
+    if (confirmP == true) {
+        resetFn();
+        location.reload();
+    };
+};

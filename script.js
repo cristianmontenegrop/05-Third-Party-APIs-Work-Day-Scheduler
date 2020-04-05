@@ -6,12 +6,32 @@ function currentDate() {
 }
 currentDate();
 
+// Function that  changes the block colors
+var now = new Date();
+var currentHour = now.getHours();
+// var currentHour = 12;
+console.log(currentHour);
+console.log(now);
 
-{/* <div class="row timeblock2">
-<div class="hour col-1">12:00</div>
-<input type="text" placeholder="Write your notes here" class="Time-block present textarea col-10">
-<button class="saveBtn fas fa-lock col-1"></button>
-</div> */}
+$(".textarea").each(function (){
 
 
-// create a function that creates all the needed timeblocks
+    if ($(this).attr("block-hour") == currentHour) {
+        console.log("==")
+        $(this).addClass("present");
+    }
+
+    if ($(this).attr("block-hour") > currentHour) {
+        console.log("<")
+        $(this).addClass("future");
+    }
+
+    if ($(this).attr("block-hour") < currentHour) {
+        console.log(">")
+        $(this).addClass("past");
+    }
+
+});
+
+
+// Function that captures the input on each time-block and saves it in the localStorage
